@@ -107,8 +107,5 @@ class MobileController extends Controller
         $data->save();
 
         return redirect('admin');
-    }
-
-
-    
+    }    
 }

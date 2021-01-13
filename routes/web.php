@@ -11,6 +11,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -29,8 +31,48 @@ Route::get('/', [HomeController::class , 'index'])
 	->name('home.page');
 
 
+
+// Cart
+Route::get('/cart', [CartController::class , 'index'])	
+	->name('cart.page')
+	->middleware('auth');
+
+Route::post('/cart/quantity-add', [CartController::class , 'quantityAdd'])	
+	->name('cart.quantityAdd')
+	->middleware('auth');	
+
+// Add to cart
 Route::get('/add-to-cart/{id}', [CartController::class , 'addToCart'])
-	->name('add.toCart');	
+	->name('add.toCart')
+	->middleware('auth');
+
+// Remove from cart
+Route::post('/cart/delete/', [CartController::class , 'removeItem'])	
+	->name('remove.item')
+	->middleware('auth');	
+
+
+
+// Billing
+Route::get('/cart/billing', [BillingController::class , 'index'])	
+	->name('billing.page')
+	->middleware('auth');
+
+Route::post('/cart/billing/save', [BillingController::class , 'saveBillingData'])	
+	->name('billingData.save')
+	->middleware('auth');
+
+Route::post('/cart/billing/update', [BillingController::class , 'updateBillingData'])	
+	->name('billingData.update')
+	->middleware('auth');	
+
+
+
+// Order
+Route::get('/cart/order', [OrderController::class , 'index'])	
+	->name('order.page')
+	->middleware('auth');
+
 
 
 // Search

@@ -25,7 +25,7 @@ class UploadMobile extends FormRequest
     {
         return [
             'brand' => 'required|max:20|alpha_num',
-            'type' => 'required|max:20|alpha_num',
+            'type' => 'required|max:20|regex:/^[a-zA-Z0-9\s]+$/',
             'color' => 'required|max:20|alpha',
             'weight' => 'required|max:300|numeric',
             'screen_size' => 'required|max:8|numeric'
