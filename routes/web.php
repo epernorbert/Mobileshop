@@ -79,16 +79,12 @@ Route::get('/cart/order', [OrderController::class , 'index'])
 Route::get('/search', [SearchController::class , 'index'])
 	->name('search.page');
 
-Route::post('/search/result', [SearchController::class , 'searchMobile'])
-	->name('search.mobile');	
+Route::post('/search/result', [SearchController::class , 'searchMobileFromHomePage'])
+	->name('search.mobileFromHomePage');	
 
 
 
 // Register
-Route::get('/register', [RegisterController::class, 'index'])
-	->name('register.page')
-	->middleware('guest');
-
 Route::post('/register', [RegisterController::class, 'register'])
 	->name('register.user');
 

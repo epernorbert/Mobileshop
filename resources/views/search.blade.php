@@ -4,16 +4,11 @@
 @section('title', 'Seach Page')
 
 
-@section('content_title')
-	<h1>This is Seach page</h1>
-@endsection	
-
-
 @section('content')
 	
-	<h2>Find your phone</h2>
+	<h1 class="mt-2">Find your phone</h1>
 
-	<form action="{{ route('search.mobile') }}" method="post">
+	<form action="" method="post">
 		@csrf
 		<label>Brand</label><br>
 		<input type="text" name="brand"><br>

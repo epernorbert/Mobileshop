@@ -4,11 +4,6 @@
 @section('title', 'Mobile Page')
 
 
-@section('content_title')
-	<h1>This is Mobile page</h1>
-@endsection	
-
-
 @section('content')
 
 	<td>

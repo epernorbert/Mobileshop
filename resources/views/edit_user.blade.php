@@ -4,11 +4,6 @@
 @section('title', 'Edit user')
 
 
-@section('content_title')
-	<h1>Edit user page</h1>
-@endsection	
-
-
 @section('content')
 	<div>
 		{{ $user->fname }}<br>

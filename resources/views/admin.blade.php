@@ -4,11 +4,6 @@
 @section('title', 'Admin Page')
 
 
-@section('content_title')
-	<h1>This is Admin page</h1>
-@endsection	
-
-
 @section('content')
 	
 

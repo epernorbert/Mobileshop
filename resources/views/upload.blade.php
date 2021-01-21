@@ -4,11 +4,6 @@
 @section('title', 'Upload page')
 
 
-@section('content_title')
-	<h1>This is Upload page</h1>
-@endsection	
-
-
 @section('content')
 
 	<form method="post" action="{{ route('upload.mobile') }}" enctype="multipart/form-data">

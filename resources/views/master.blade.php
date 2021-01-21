@@ -3,35 +3,87 @@
 <head>	
 	<meta charset="utf-8">
 	<title>@yield('title')</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+   
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
+
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
 	
-	@yield('content_title')
+	* {
+		font-family: 'Poppins', sans-serif;
+	}
 	
-	<nav>
-		<ul>			
-			<a href="{{ route('home.page') }}"><li>Home</li><a>
-			<a href="{{ route('search.page') }}"><li>Search</li><a>
-			@if(!Auth::check())
-				<a href="{{ route('login.page') }}"><li>Login</li><a>
-				<a href="{{ route('register.page') }}"><li>Registration</li><a>
-			@else
-				<li>{{Auth::user()->uname}}</li>									
-			@endif
+	body {
+		padding-top: 65px;
+	}
+</style>
+	
+@yield('content_title')
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+ 	<a class="navbar-brand" href="#">Logo</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+  	</button>
+
+  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    	<ul class="navbar-nav mr-auto">
+      		<li class="nav-item active">
+        		<a class="nav-link" href="{{ route('home.page') }}">Home <span class="sr-only">(current)</span></a>
+      		</li>
+      		<li class="nav-item">
+        		<a class="nav-link" href="{{ route('search.page') }}">Search</a>
+      		</li>      
 			@if(Auth::check() && Auth::user()->admin)
-				<a href="{{ route('admin.page') }}"><li>Admin</li><a>				
-			@endif
-		</ul>
-	</nav>
+				<li class="nav-item">
+			        <a class="nav-link" href="{{ route('admin.page') }}">Admin</a>
+			    </li>
+	 	    @endif         
+    	</ul>    
+    	<ul class="navbar-nav ml-auto">
+    		@if(!Auth::check())
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="{{ route('login.page') }}">Login | Register</a>
+	      		</li>	      		
+      		@else
+	       		<li class="nav-item">
+	        		<a class="nav-link" href="{{ route('cart.page') }}">Cart Item: {{ (Session::get('cart') == null ? '0' : count(Session::get('cart'))) }}</a>
+	      		</li>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="#">{{Auth::user()->uname}}</a>
+	      		</li>
+	  		@endif
+    	</ul> 
+    	@if(Auth::check())       
+			<form class="form-inline my-2 my-lg-0" method="post" action="{{ route('logout.user') }}">
+				@csrf
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+			</form>
+		@endif
+    	<form class="form-inline my-2 ml-lg-5 my-lg-0" action="{{ route('search.mobileFromHomePage') }}" method="post">
+    		@csrf
+      		<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    	</form>    
+  	</div>
+</nav>
 
-	@if(Auth::check())
-	<form method="post" action="{{ route('logout.user') }}">
-		@csrf
-		<button type="submit">Logout</button>
-	</form>
-	@endif
-
-	@yield('content')
+<div class="mx-xl-5 mx-lg-5 mx-md-5 mb-3">
+	<div class="mx-xl-5">
+		<div class="mx-xl-5">			
+			@yield('content')
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

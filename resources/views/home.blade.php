@@ -4,50 +4,35 @@
 @section('title', 'Home Page')
 
 
-@section('content_title')
-	<h1>This is Home page</h1>
-@endsection	
-
-
 @section('content')
-	
-	<h2>Legfrissebb kínálat</h2>
-
-	@foreach($mobile as $mobiles)
 		
-		<a href="{{ route('mobile.page', $mobiles->id) }}">
-			<td>
-				{{ $mobiles->brand }}
-				{{ $mobiles->type }}
-				{{ $mobiles->color }}
-				@if(Auth::check())
-					<a href="{{ route('add.toCart', $mobiles->id) }}" name="cart" id="cart">
-						<button>Add to cart</button>
-					</a>
-				@endif
-			</td>
-		<a/><br>
-
-	@endforeach
-
-	<div>
-		@if(Auth::check())
-			<a href="{{ route('cart.page') }}" style="text-decoration: none;">
-				<h3>
-					Cart items: 
-					{{ (Session::get('cart') == null ? '0' : count(Session::get('cart'))) }}
-				</h3>		
-			</a>
-			<br>	
-		@endif
-	<div>
-
-	<div>
-		@if(session()->has('cartError'))
-			<p style="color: red;">{{session()->get('cartError')}}<p>
-		@else
-			<p style="color: green;">{{session()->get('cartSuccess')}}<p>
-		@endif
-	</div>	
+    <h1 class="mt-2">Latest Devices</h1>
+          
+	@foreach(array_chunk($item->toArray(), 4) as $chunk)
+	    <div class="row">
+	        @foreach($chunk as $data)
+	            <div class="col-sm">
+	                <div class="card text-center border-dark mt-2 mb-2 pt-3">
+					  <img src="/mobileshop/storage/app/public/image/{{ $data->name }}" class="card-img-top mx-auto" alt="" style="height: 180px; width: auto;">
+					  <div class="card-body">
+					    <h5 class="card-title">{{ $data->brand }} <br> {{ $data->type }}</h5>
+					    <p class="card-text">
+					    	Color: {{ $data->color }} <br> 
+					    	Weight: {{ $data->weight }} <br> 
+					    	Screen size:{{ $data->screen_size }} <br>
+					    	Price: 123 € <br>					    	
+					    </p>
+					    <a href="{{ route('mobile.page', $data->mobile_id) }}" class="btn btn-primary">Check</a><br><br>
+					    @if(Auth::check())
+							<a href="{{ route('add.toCart', $data->mobile_id) }}" name="cart" id="cart">
+								<button type="button" class="btn btn-outline-primary">Add to cart</button>
+							</a>					
+						@endif
+					  </div>
+					</div>
+	            </div>
+	        @endforeach
+	    </div>
+	@endforeach		
 
 @endsection

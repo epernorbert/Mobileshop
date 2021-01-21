@@ -4,11 +4,6 @@
 @section('title', 'Order Page')
 
 
-@section('content_title')
-	<h1>This is order page</h1>
-@endsection	
-
-
 @section('content')
 	
 	<h2>Ordered Items</h2>

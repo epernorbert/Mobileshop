@@ -4,11 +4,6 @@
 @section('title', 'Edit Page')
 
 
-@section('content_title')
-	<h1>This is Edit Mobile page</h1>
-@endsection	
-
-
 @section('content')
 
 

@@ -4,11 +4,6 @@
 @section('title', 'Cart Page')
 
 
-@section('content_title')
-	<h1>This is Cart page</h1>
-@endsection	
-
-
 @section('content')
 	
 	<h2>A kosár tartalma</h2>	

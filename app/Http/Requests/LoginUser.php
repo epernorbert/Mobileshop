@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginUser extends FormRequest
 {
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,8 +27,8 @@ class LoginUser extends FormRequest
     {
         
         return [
-            'username' => 'required|max:20|alpha_num',
-            'password' => 'required'
+            'usernamee' => 'required|max:20|alpha_num',
+            'passwordd' => 'required'
         ];
     }
 }

@@ -3,12 +3,6 @@
 
 @section('title', 'Billing Page')
 
-
-@section('content_title')
-	<h1>This is billing page</h1>
-@endsection	
-
-
 @section('content')
 	
 	<h2>Billing details</h2>

@@ -19,12 +19,12 @@ class LoginController extends Controller
 
 	
 	// user login
-	public function sign_in(LoginUser $request){		
+	public function sign_in(LoginUser $request){			
 
 		// authentication function
 		if(Auth::attempt([
-			'uname' => $request->username,
-			'password' => $request->password
+			'uname' => $request->usernamee,
+			'password' => $request->passwordd
 		])){						
 			if(Auth::user()->admin == false){
 				return redirect()->intended( route ('home.page'));
@@ -33,6 +33,7 @@ class LoginController extends Controller
 			}
 			
 		}
+		
 
 		return redirect()->back()->with('status', 'Username or password is incorrect!');
 	}
