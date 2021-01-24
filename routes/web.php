@@ -31,6 +31,10 @@ Route::get('/', [HomeController::class , 'index'])
 	->name('home.page');
 
 
+// Profile
+Route::get('/profile', [UserController::class , 'checkProfile'])
+	->name('profile.page');
+
 
 // Cart
 Route::get('/cart', [CartController::class , 'index'])	

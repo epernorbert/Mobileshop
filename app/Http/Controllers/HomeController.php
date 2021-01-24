@@ -13,8 +13,10 @@ class HomeController extends Controller
 	public function index() {
 		
         $item = DB::table('mobiles')
-                        ->join('images', 'mobiles.id', '=', 'images.mobile_id')                             
+                        ->join('images', 'mobiles.id', '=', 'images.mobile_id')  
+                        ->orderBy('mobiles.id', 'desc')                           
                         ->groupBy('mobiles.id')
+                        ->limit(8)
                         ->get();
 
 		return view('home', compact('item'));

@@ -27,7 +27,6 @@
 	}
 </style>
 	
-@yield('content_title')
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
  	<a class="navbar-brand" href="#">Logo</a>
@@ -59,7 +58,7 @@
 	        		<a class="nav-link" href="{{ route('cart.page') }}">Cart Item: {{ (Session::get('cart') == null ? '0' : count(Session::get('cart'))) }}</a>
 	      		</li>
 	      		<li class="nav-item">
-	        		<a class="nav-link" href="#">{{Auth::user()->uname}}</a>
+	        		<a class="nav-link" href="{{ route('profile.page') }}">{{Auth::user()->uname}}</a>
 	      		</li>
 	  		@endif
     	</ul> 
@@ -77,12 +76,24 @@
   	</div>
 </nav>
 
-<div class="mx-xl-5 mx-lg-5 mx-md-5 mb-3">
-	<div class="mx-xl-5">
-		<div class="mx-xl-5">			
-			@yield('content')
-		</div>
-	</div>
+<style type="text/css">
+
+	.content {
+		margin: 0 10%;
+	}
+
+	@media screen and (max-width: 600px) {
+	  .content {
+	    margin: 3%;
+	  }
+	}
+
+</style>
+
+<div class="content">
+
+	@yield('content')	
+	
 </div>
 
 </body>
