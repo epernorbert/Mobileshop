@@ -53,6 +53,18 @@ class MobileController extends Controller
     	$mobile->color = $request->color;
     	$mobile->weight = $request->weight;
     	$mobile->screen_size = $request->screen_size;  
+
+        $mobile->screen_resolution = $request->screen_resolution;         
+        $mobile->screen_type = $request->screen_type;         
+        $mobile->main_camera = $request->main_camera;         
+        $mobile->selfie_camera = $request->selfie_camera;         
+        $mobile->OS = $request->os;         
+        $mobile->memory = $request->memory;         
+        $mobile->gpu = $request->gpu;         
+        $mobile->cpu = $request->cpu;         
+        $mobile->battery = $request->battery;         
+        $mobile->price = $request->price;         
+        
     	$mobile->user_id = Auth::user()->id;          
     	$mobile->save();
 

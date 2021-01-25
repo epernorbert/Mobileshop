@@ -77,6 +77,11 @@ Route::get('/cart/order', [OrderController::class , 'index'])
 	->name('order.page')
 	->middleware('auth');
 
+// Order complete
+Route::post('/cart/order/complete', [OrderController::class , 'OrderComplete'])	
+	->name('order.complete')
+	->middleware('auth');	
+
 
 
 // Search

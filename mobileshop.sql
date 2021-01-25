@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Jan 21. 18:53
+-- Létrehozás ideje: 2021. Jan 25. 20:49
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -64,6 +64,13 @@ CREATE TABLE `comments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- A tábla adatainak kiíratása `comments`
+--
+
+INSERT INTO `comments` (`id`, `content`, `mobile_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(17, 'Hello.', 118, 18, '2021-01-24 13:48:30', '2021-01-24 13:48:30');
+
 -- --------------------------------------------------------
 
 --
@@ -99,7 +106,11 @@ INSERT INTO `images` (`id`, `name`, `mobile_id`, `created_at`, `updated_at`) VAL
 (131, 'D0RJUG9ZSGYR2gBRWoEUw6c1lmS5fFrvzFivD7lk.jpg', 114, '2021-01-20 16:30:17', '2021-01-20 16:30:17'),
 (132, 'P6wsIFWlhfStTPkbisfrQC8Yzjg818qfW9EXmTW6.jpg', 114, '2021-01-20 16:30:17', '2021-01-20 16:30:17'),
 (133, 'nAd9YkRfCPNFO67m5FaucoAjPqZAGtGX3Odvtin8.jpg', 115, '2021-01-20 16:30:34', '2021-01-20 16:30:34'),
-(134, 'OTrG0fUudE5ULl2CI03LRL8KJgh9rh7AaG3cUugQ.jpg', 115, '2021-01-20 16:30:34', '2021-01-20 16:30:34');
+(134, 'OTrG0fUudE5ULl2CI03LRL8KJgh9rh7AaG3cUugQ.jpg', 115, '2021-01-20 16:30:34', '2021-01-20 16:30:34'),
+(139, '5qmSclIzbQ1N1BrUkAYndhFGPtZ5UZtLKeWEUQSD.jpg', 118, '2021-01-22 09:33:45', '2021-01-22 09:33:45'),
+(140, 'JRHJkI6tyhoR2gQk7EOeNzN9xkCWk3MZx9ybn988.jpg', 118, '2021-01-22 09:33:45', '2021-01-22 09:33:45'),
+(142, '1BNUoB0iA465cc9VZikxFRJY7fdl6ghXujdsTSK8.jpg', 120, '2021-01-24 11:55:54', '2021-01-24 11:55:54'),
+(143, '86iFDqblfQEOkC1o0ncd1AaRaO3yzpfQRpltKp7v.jpg', 120, '2021-01-24 11:55:54', '2021-01-24 11:55:54');
 
 -- --------------------------------------------------------
 
@@ -123,7 +134,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2020_12_18_184057_add_admin_column_to_users_table', 2),
 (12, '2020_12_21_123105_create_comments_table', 3),
 (13, '2020_12_24_115217_create_images_table', 3),
-(14, '2021_01_11_124950_create_billings_table', 4);
+(14, '2021_01_11_124950_create_billings_table', 4),
+(15, '2014_10_12_100000_create_password_resets_table', 5),
+(16, '2021_01_11_170844_create_orders_table', 5),
+(20, '2021_01_24_101016_add_more_specification_for_mobile_table', 6),
+(21, '2021_01_25_125537_drop_orders_table', 7),
+(22, '2021_01_25_131259_create_orders_table', 8);
 
 -- --------------------------------------------------------
 
@@ -138,6 +154,16 @@ CREATE TABLE `mobiles` (
   `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `weight` int(11) NOT NULL,
   `screen_size` float NOT NULL,
+  `screen_resolution` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `screen_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `main_camera` int(11) NOT NULL,
+  `selfie_camera` int(11) NOT NULL,
+  `OS` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `memory` int(11) NOT NULL,
+  `gpu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cpu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `battery` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -147,15 +173,57 @@ CREATE TABLE `mobiles` (
 -- A tábla adatainak kiíratása `mobiles`
 --
 
-INSERT INTO `mobiles` (`id`, `brand`, `type`, `color`, `weight`, `screen_size`, `user_id`, `created_at`, `updated_at`) VALUES
-(108, 'Xiaomi', 'Redmi Note 5', 'Black', 220, 6.2, 1, '2021-01-20 11:49:55', '2021-01-20 11:49:55'),
-(109, 'Samsung', 'Galaxy A51', 'blue', 210, 6.2, 1, '2021-01-20 11:50:48', '2021-01-20 11:50:48'),
-(110, 'Iphone', 'X', 'black', 200, 5.7, 1, '2021-01-20 11:51:14', '2021-01-20 11:51:14'),
-(111, 'Samsung', 'Galaxy S20', 'Grey', 215, 6.3, 1, '2021-01-20 11:54:36', '2021-01-20 11:54:36'),
-(112, 'Huawei', 'P20', 'Black', 200, 6, 1, '2021-01-20 11:55:03', '2021-01-20 11:55:03'),
-(113, 'Samsung', 'Galaxy A31', 'Black', 200, 6.2, 1, '2021-01-20 16:29:49', '2021-01-21 16:02:24'),
-(114, 'Iphone', 'SE', 'White', 190, 5.5, 1, '2021-01-20 16:30:17', '2021-01-21 16:02:50'),
-(115, 'Huawei', 'P30', 'Blue', 205, 6, 1, '2021-01-20 16:30:34', '2021-01-21 16:03:40');
+INSERT INTO `mobiles` (`id`, `brand`, `type`, `color`, `weight`, `screen_size`, `screen_resolution`, `screen_type`, `main_camera`, `selfie_camera`, `OS`, `memory`, `gpu`, `cpu`, `battery`, `price`, `user_id`, `created_at`, `updated_at`) VALUES
+(108, 'Xiaomi', 'Redmi Note 5', 'Black', 220, 6.2, '1080*1920', 'IPS', 12, 5, 'Android 8.0', 4, 'Adreno 506', 'Snapdragon 636', 4000, 165, 1, '2021-01-20 11:49:55', '2021-01-20 11:49:55'),
+(109, 'Samsung', 'Galaxy A51', 'blue', 210, 6.5, '1080*2400', 'Super AMOLED', 48, 32, 'Android 10', 6, 'Mali-G72 MP3', 'Octa-core', 4000, 300, 1, '2021-01-20 11:50:48', '2021-01-20 11:50:48'),
+(110, 'Iphone', 'X', 'black', 200, 5.7, '1125*2436', 'Super Retina OLED', 12, 7, 'iOS 11.1.1', 3, 'Apple GPU', 'Hexa-core 2.39 GHz', 2716, 600, 1, '2021-01-20 11:51:14', '2021-01-20 11:51:14'),
+(111, 'Samsung', 'Galaxy S20', 'Grey', 215, 6.3, '1440*3200', 'Dynamic AMOLED 2X', 12, 10, 'Android 10', 8, 'Mali-G77 MP11', 'Octa-core', 4000, 700, 1, '2021-01-20 11:54:36', '2021-01-20 11:54:36'),
+(112, 'Huawei', 'P20', 'Black', 200, 6, '1080*2240', 'OLED', 40, 24, 'Android 8.1', 6, 'Mali-G72 MP12', 'Octa-core', 4000, 400, 1, '2021-01-20 11:55:03', '2021-01-20 11:55:03'),
+(113, 'Samsung', 'Galaxy A31', 'Black', 200, 6.2, '1080*2400', 'Super AMOLED', 48, 20, 'Android 10', 6, 'Mali-G52 MC2', 'Octa-core', 5000, 250, 1, '2021-01-20 16:29:49', '2021-01-21 16:02:24'),
+(114, 'Iphone', 'SE', 'White', 190, 5.5, '750*1334', 'Retina IPS LCD', 12, 7, 'iOS 13', 3, 'Apple GPU', 'Hexa-core', 1821, 320, 1, '2021-01-20 16:30:17', '2021-01-21 16:02:50'),
+(115, 'Huawei', 'P30', 'Blue', 205, 6, '1080*2340', 'OLED', 40, 32, 'Android 9.0', 8, 'Mali-G76 MP10', 'Octa-core', 4200, 680, 1, '2021-01-20 16:30:34', '2021-01-21 16:03:40'),
+(118, 'Xiaomi', 'Redmi Note 10', 'Blue', 220, 6.4, '1080*2400', 'IPS LCD', 48, 16, 'Android 10', 6, 'Mali-G57 MC3', 'Octa-core', 4800, 230, 1, '2021-01-22 09:33:45', '2021-01-22 09:33:45'),
+(120, 'Iphone', '6', 'Grey', 190, 4.7, '1080*1800', 'IPS LCD', 8, 4, 'IOS 8', 1, 'Dual-core 1.4 GHz Typhoon', 'PowerVR GX6450', 1810, 200, 1, '2021-01-24 11:55:54', '2021-01-24 11:55:54');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- A tábla adatainak kiíratása `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(16, 4, 120, 3, '2021-01-25 14:26:36', '2021-01-25 14:26:36'),
+(17, 4, 118, 1, '2021-01-25 14:26:36', '2021-01-25 14:26:36'),
+(18, 18, 113, 1, '2021-01-25 17:23:08', '2021-01-25 17:23:08'),
+(19, 18, 112, 2, '2021-01-25 17:23:08', '2021-01-25 17:23:08'),
+(20, 1, 110, 3, '2021-01-25 18:23:46', '2021-01-25 18:23:46'),
+(21, 1, 111, 1, '2021-01-25 18:23:46', '2021-01-25 18:23:46'),
+(22, 4, 111, 1, '2021-01-25 18:33:10', '2021-01-25 18:33:10');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -226,6 +294,20 @@ ALTER TABLE `mobiles`
   ADD KEY `mobiles_user_id_foreign` (`user_id`);
 
 --
+-- A tábla indexei `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_user_id_foreign` (`user_id`),
+  ADD KEY `orders_product_id_foreign` (`product_id`);
+
+--
+-- A tábla indexei `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- A tábla indexei `users`
 --
 ALTER TABLE `users`
@@ -247,25 +329,31 @@ ALTER TABLE `billings`
 -- AUTO_INCREMENT a táblához `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT a táblához `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT a táblához `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT a táblához `mobiles`
 --
 ALTER TABLE `mobiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+
+--
+-- AUTO_INCREMENT a táblához `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT a táblához `users`
@@ -301,6 +389,13 @@ ALTER TABLE `images`
 --
 ALTER TABLE `mobiles`
   ADD CONSTRAINT `mobiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `mobiles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

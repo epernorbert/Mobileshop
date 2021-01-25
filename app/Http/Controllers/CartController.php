@@ -31,11 +31,9 @@ class CartController extends Controller
         $item = [
             'id' => $mobile->id,
             'brand' => $mobile->brand,
-            'type' => $mobile->type,
-            'color' => $mobile->color,
-            'weight' => $mobile->weight,
-            'screen_size' => $mobile->screen_size,
-            'quantity' => 1
+            'type' => $mobile->type, 
+            'quantity' => 1,           
+            'price' => $mobile->price
         ];
 
         // Check the item exist in the cart        
@@ -74,20 +72,16 @@ class CartController extends Controller
         // item data in the cart
         $id = Session::get('cart')[$index]['id'];
         $brand = Session::get('cart')[$index]['brand'];
-        $type = Session::get('cart')[$index]['type'];
-        $color = Session::get('cart')[$index]['color'];
-        $weight = Session::get('cart')[$index]['weight'];
-        $screen_size = Session::get('cart')[$index]['screen_size'];
+        $type = Session::get('cart')[$index]['type'];        
         $quantity = Session::get('cart')[$index]['quantity'];    
+        $price = Session::get('cart')[$index]['price'];            
 
         $item = [            
             'id' => $id,
             'brand' => $brand,
-            'type' => $type,
-            'color' => $color,
-            'weight' => $weight,
-            'screen_size' => $screen_size,
-            'quantity' => $quantity+1
+            'type' => $type,            
+            'quantity' => $quantity+1,
+            'price' => $price,            
         ];         
                 
         session()->put('cart.'.$index, $item);                   

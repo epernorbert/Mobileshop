@@ -19,8 +19,8 @@
 						    <p class="card-text">
 						    	Color: {{ $data->color }} <br> 
 						    	Weight: {{ $data->weight }} <br> 
-						    	Screen size:{{ $data->screen_size }} <br>
-						    	Price: 123 € <br>					    	
+						    	Screen size: {{ $data->screen_size }} <br>
+						    	Price: {{ $data->price }} € <br>
 						    </p>
 						    <a href="{{ route('mobile.page', $data->mobile_id) }}" class="btn btn-primary">Check</a><br><br>
 						    @if(Auth::check())
