@@ -1,11 +1,13 @@
-Project run:
-1.Run git clone mobileshop
-2.Run composer install
-3.Run cp .env.example .env
-4.Run php artisan key:generate
-5.Run php artisan migrate
-6.Run php artisan serve
-7.Go to link localhost:8000
+<h2>Project run:</h2>
+<ul>
+    <li>git clone mobileshop</li>
+    <li>composer install</li>
+    <li>cp .env.example .env</li>
+    <li>php artisan key:generate</li>
+    <li>php artisan migrate</li>
+    <li>php artisan serve</li>
+    <li>Go to link localhost:8000</li>
+</ul>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
