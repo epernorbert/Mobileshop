@@ -4,10 +4,13 @@
     <li>composer install</li>
     <li>cp .env.example .env</li>
     <li>php artisan key:generate</li>
+    <li>Create mobileshop database</li>
     <li>php artisan migrate</li>
     <li>php artisan serve</li>
     <li>Go to link localhost:8000</li>
 </ul>
+
+<p>after user registration go to the users table of database and set from zero to one the admin field<br>That's the way to see admin menu and upload product</p>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
